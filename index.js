@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // gig route
 const gigRoute = require('./routes/gig')
-app.use('/gigs', gigRoute);
+app.use('/gigs', express.static(path.join(__dirname, 'public')), gigRoute);
 
 // index route
 app.get('/', (req, res) => {

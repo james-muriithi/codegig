@@ -14,26 +14,28 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/add', (req, res) => {
-    const data = {
-        title: 'Looking for a react developer',
-        technologies: 'React, JS, HTML, css',
-        budget: "$3000",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam vero sequi corporis, vitae iste esse a ratione nemo natus accusamus, assumenda impedit blanditiis, eum consequatur hic. Laboriosam voluptas aperiam consectetur.",
-        contact_email: 'john@doe.com'
-    }
+router.get('/add', (req, res) => {
+    res.render('add');
 
-    let { title, technologies, budget, description, contact_email } = data
+    // const data = {
+    //     title: 'Looking for a react developer',
+    //     technologies: 'React, JS, HTML, css',
+    //     budget: "$3000",
+    //     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam vero sequi corporis, vitae iste esse a ratione nemo natus accusamus, assumenda impedit blanditiis, eum consequatur hic. Laboriosam voluptas aperiam consectetur.",
+    //     contact_email: 'john@doe.com'
+    // }
 
-    Gig.create({
-            title,
-            technologies,
-            budget,
-            description,
-            contact_email
-        })
-        .then(gig => res.redirect('/gigs'))
-        .catch(err => console.log(err))
+    // let { title, technologies, budget, description, contact_email } = data
+
+    // Gig.create({
+    //         title,
+    //         technologies,
+    //         budget,
+    //         description,
+    //         contact_email
+    //     })
+    //     .then(gig => res.redirect('/gigs'))
+    //     .catch(err => console.log(err))
 
 });
 
