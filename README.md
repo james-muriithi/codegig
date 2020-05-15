@@ -1,5 +1,6 @@
 # Code Gig
 > Simple Job find app for coders. This app uses Node, Express, Sequalize (Postgres) and Handlebars.
+
 ![](screenshot.jpg)
 ## Quick Start
 
