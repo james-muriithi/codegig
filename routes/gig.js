@@ -20,7 +20,7 @@ router.get('/add', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-    const { term } = req.query
+    let { term } = req.query
     term = term.toLowerCase()
     Gig.findAll({
             raw: true,
