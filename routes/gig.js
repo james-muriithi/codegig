@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db/db');
 const Gig = require('../models/Gig');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 // get the gigs
 router.get('/', (req, res) => {
@@ -16,26 +17,72 @@ router.get('/', (req, res) => {
 
 router.get('/add', (req, res) => {
     res.render('add');
+});
 
-    // const data = {
-    //     title: 'Looking for a react developer',
-    //     technologies: 'React, JS, HTML, css',
-    //     budget: "$3000",
-    //     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam vero sequi corporis, vitae iste esse a ratione nemo natus accusamus, assumenda impedit blanditiis, eum consequatur hic. Laboriosam voluptas aperiam consectetur.",
-    //     contact_email: 'john@doe.com'
-    // }
+router.get('/search', (req, res) => {
+    const { term } = req.query
+    term = term.toLowerCase()
+    Gig.findAll({
+            raw: true,
+            where: {
+                technologies: {
+                    [Op.like]: `%${term}%`
+                }
+            }
+        })
+        .then(gigs => {
+            res.render('gigs', { gigs });
+        })
+        .catch(err => {
+            console.log(err);
+        })
+});
 
-    // let { title, technologies, budget, description, contact_email } = data
+router.post('/add', (req, res) => {
+    let { title, technologies, budget, description, contact_email } = req.body
 
-    // Gig.create({
-    //         title,
-    //         technologies,
-    //         budget,
-    //         description,
-    //         contact_email
-    //     })
-    //     .then(gig => res.redirect('/gigs'))
-    //     .catch(err => console.log(err))
+    let errors = []
+    if (!title) {
+        errors.push({ message: 'Please add a title.' })
+    }
+    if (!technologies) {
+        errors.push({ message: 'Please add the technologies.' })
+    }
+    if (!description) {
+        errors.push({ message: 'Please add a description.' })
+    }
+    if (!contact_email) {
+        errors.push({ message: 'Please add a contact email.' })
+    }
+
+    if (errors.length > 0) {
+        res.render('add', {
+            errors,
+            title,
+            technologies,
+            budget,
+            description,
+            contact_email
+        });
+    } else {
+        if (!budget) {
+            budget = 'Unknown'
+        } else {
+            budget = `$${budget}`
+        }
+
+        technologies = technologies.toLowerCase().replace('/, /g', ',')
+
+        Gig.create({
+                title,
+                technologies,
+                budget,
+                description,
+                contact_email
+            })
+            .then(gig => res.redirect('/gigs'))
+            .catch(err => console.log(err))
+    }
 
 });
 
