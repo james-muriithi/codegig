@@ -17,8 +17,8 @@ const gigRoute = require('./routes/gig')
 app.use('/gigs', gigRoute);
 
 // index route
-app.use('/', (req, res) => {
-    res.json({ value: 'jes' });
+app.get('/', (req, res) => {
+    res.render('index', { layout: 'landing' });
 });
 
 

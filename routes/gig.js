@@ -8,14 +8,13 @@ router.get('/', (req, res) => {
     Gig.findAll({ raw: true })
         .then(gigs => {
             res.render('gigs', { gigs });
-            console.log(gigs);
         })
         .catch((err) => {
             console.log(err);
         })
 });
 
-router.get('/add', (req, res) => {
+router.post('/add', (req, res) => {
     const data = {
         title: 'Looking for a react developer',
         technologies: 'React, JS, HTML, css',
