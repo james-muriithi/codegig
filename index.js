@@ -5,10 +5,21 @@ const path = require('path');
 
 const app = express();
 
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars');
+
+// static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // gig route
 const gigRoute = require('./routes/gig')
 app.use('/gigs', gigRoute);
+
+// index route
+app.use('/', (req, res) => {
+    res.json({ value: 'jes' });
+});
 
 
 const PORT = process.env.PORT || 5050
