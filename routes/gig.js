@@ -6,7 +6,12 @@ const Op = Sequelize.Op;
 
 // get the gigs
 router.get('/', (req, res) => {
-    Gig.findAll({ raw: true })
+    Gig.findAll({
+            raw: true,
+            order: [
+                ['createdAt', 'DESC']
+            ],
+        })
         .then(gigs => {
             res.render('gigs', { gigs });
         })
@@ -52,36 +57,40 @@ router.get('/search', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-    let { title, technologies, budget, description, contact_email } = req.body
+    let { title, technologies, budget, description, contact_email, company, category } = req.body
 
     let errors = []
     if (!title) {
-        errors.push({ message: 'Please add a title.' })
+        errors.push({ message: 'Please add a title.', field_name: 'title' })
     }
     if (!technologies) {
-        errors.push({ message: 'Please add the technologies.' })
+        errors.push({ message: 'Please add the technologies.', field_name: 'technologies' })
     }
     if (!description) {
-        errors.push({ message: 'Please add a description.' })
+        errors.push({ message: 'Please add a description.', field_name: 'description' })
     }
     if (!contact_email) {
-        errors.push({ message: 'Please add a contact email.' })
+        errors.push({ message: 'Please add a contact email.', field_name: 'contact_email' })
+    } else {
+        let pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/
+        if (!contact_email.match(pattern)) {
+            errors.push({ message: 'Please provide a valid contact email.', field_name: 'contact_email' })
+        }
+    }
+    if (!company) {
+        errors.push({ message: 'Please add a company.', field_name: 'company' })
+    }
+    if (!category) {
+        errors.push({ message: 'Please add a category for the job.', field_name: 'category' })
     }
 
     if (errors.length > 0) {
-        res.render('add', {
-            errors,
-            title,
-            technologies,
-            budget,
-            description,
-            contact_email
+        res.json({
+            errors
         });
     } else {
         if (!budget) {
             budget = 'Unknown'
-        } else {
-            budget = `$${budget}`
         }
 
         technologies = technologies.toLowerCase().replace('/, /g', ',')
@@ -91,9 +100,13 @@ router.post('/add', (req, res) => {
                 technologies,
                 budget,
                 description,
-                contact_email
+                contact_email,
+                company,
+                category
             })
-            .then(gig => res.redirect('/gigs'))
+            .then(gig => {
+                res.json({ success: "Your job post was successfully saved." });
+            })
             .catch(err => console.log(err))
     }
 
