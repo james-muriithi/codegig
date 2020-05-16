@@ -21,7 +21,15 @@ app.use('/gigs', express.static(path.join(__dirname, 'public')), gigRoute);
 
 // index route
 app.get('/', (req, res) => {
-    res.render('index', { layout: 'landing' });
+    const Gig = require('./models/Gig');
+
+    Gig.findAll({ raw: true, limit: 3 })
+        .then(gigs => {
+            res.render('index', { gigs });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 });
 
 

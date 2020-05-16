@@ -25,9 +25,22 @@ router.get('/search', (req, res) => {
     Gig.findAll({
             raw: true,
             where: {
-                technologies: {
-                    [Op.like]: `%${term}%`
-                }
+                [Op.or]: [{
+                        technologies: {
+                            [Op.iLike]: `%${term}%`
+                        }
+                    },
+                    {
+                        title: {
+                            [Op.iLike]: `%${term}%`
+                        }
+                    },
+                    {
+                        description: {
+                            [Op.iLike]: `%${term}%`
+                        }
+                    }
+                ],
             }
         })
         .then(gigs => {
