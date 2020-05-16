@@ -228,12 +228,63 @@
 
      });
 
+     //  job add form
+     $('#add-job').on('submit', function(event) {
+         event.preventDefault();
+         let formData = {};
+         $('#add-job').serializeArray().map(item => formData[item.name] = item.value);
+
+
+         $.ajax({
+             type: "POST",
+             url: "/gigs/add",
+             data: formData,
+             dataType: "json",
+             success: function(response) {
+                 if (response.errors) {
+                     $('#add-job input, textarea').each(function() {
+                         $(this).removeClass('is-invalid')
+                         $(this).next().remove()
+                     })
+                     response.errors.forEach(error => {
+                         let input = error.field_name != 'description' ? $(`input[name="${error.field_name}"]`) : $(`textarea[name="${error.field_name}"]`)
+
+                         input.addClass('is-invalid')
+                         input.after(`<small class="text-danger error">
+                                    ${error.message}
+                                </small>`)
+                     });
+                 } else if (response.success) {
+                     $('#add-job').reset()
+                     toastr.success(response.success, 'Hurray🥂!', {
+                         showMethod: "slideDown",
+                         hideMethod: "fadeOut",
+                         positionClass: 'toast-bottom-right'
+                     })
+                 } else {
+                     toastr.error("An unexpected error occurred.", 'Oops!', {
+                         showMethod: "slideDown",
+                         hideMethod: "fadeOut",
+                         positionClass: 'toast-bottom-right'
+                     })
+                 }
+             },
+             error: function(response) {
+                 console.error(response);
+                 toastr.error("An unexpected error occurred.", 'Oops!', {
+                     showMethod: "slideDown",
+                     hideMethod: "fadeOut",
+                     positionClass: 'toast-bottom-right'
+                 })
+             }
+         });
+     })
+
      $(function() {
          let current = location.pathname.endsWith('/') ? location.pathname : `${location.pathname}/`;
          $('.navbar-nav li a').each(function(index, el) {
              let th = $(this),
                  href = th.attr('href').endsWith('/') ? th.attr('href') : `${th.attr('href')}/`;
-             console.log(href.indexOf(`${current}`));
 
              if (href.indexOf(current) !== -1) {
 
@@ -244,6 +295,13 @@
          });
      })
 
+     //  on keyup of inputs remove errors
+     $('#add-job input, textarea').each(function() {
+         $(this).on('keyup', function() {
+             $(this).removeClass('is-invalid')
+             $(this).next().remove()
+         })
 
+     })
 
  })(jQuery);
