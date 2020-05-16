@@ -16,6 +16,12 @@ const Gig = db.define('gig', {
     },
     contact_email: {
         type: Sequelize.STRING
+    },
+    company: {
+        type: Sequelize.STRING
+    },
+    category: {
+        type: Sequelize.STRING
     }
 })
 
