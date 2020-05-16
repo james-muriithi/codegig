@@ -6,19 +6,26 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 col-lg-8 mb-5">
-                <form action="gigs/add" method="POST" class="px-5 pt-5 pb-3 bg-white px-md-2">
+                <form method="POST" class="px-3 pt-5 pb-3 bg-white px-md-5" id="add-job">
                     <div class="row form-group">
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <label class="font-weight-bold" for="title">Job Title</label>
+                            <label class="font-weight-bold" for="title">Job Title *</label>
                             <input type="text" id="title" name="title" class="form-control"
                                 placeholder="eg. Professional UI/UX Designer">
                         </div>
                     </div>
                     <div class="row form-group mb-5">
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <label class="font-weight-bold" for="company">Company</label>
+                            <label class="font-weight-bold" for="company">Company *</label>
                             <input type="text" id="company" name="company" class="form-control"
                                 placeholder="eg. Facebook, Inc.">
+                        </div>
+                    </div>
+                    <div class="row form-group mb-5">
+                        <div class="col-md-12 mb-3 mb-md-0">
+                            <label class="font-weight-bold" for="contact_email">Contact Email *</label>
+                            <input type="email" name="contact_email" id="contact_email" class="form-control"
+                                placeholder="eg. john@doe.com">
                         </div>
                     </div>
                     <div class="row form-group mb-5">
@@ -29,15 +36,15 @@
                     </div>
                     <div class="row form-group mb-5">
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <label class="font-weight-bold" for="technologies">Technologies</label>
+                            <label class="font-weight-bold" for="technologies">Technologies *</label>
                             <input type="text" name="technologies" id="technologies" class="form-control"
                                 placeholder="eg. javascript, react, PHP">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-bold" for="category">Category</label>
-                        <select name="" id="category" class="form-control">
-                            <option value="Full Time">Full Time</option>
+                        <label class="font-weight-bold" for="category">Category *</label>
+                        <select name="category" id="category" class="form-control">
+                            <option value="Full Time" selected>Full Time</option>
                             <option value="Part Time">Part Time</option>
                             <option value="Freelance">Freelance</option>
                             <option value="Internship">Internship</option>
@@ -47,7 +54,7 @@
 
                     <div class="row form-group">
                         <div class="col-md-12 mb-3 mb-md-0">
-                            <label class="font-weight-bold" for="description">Description</label>
+                            <label class="font-weight-bold" for="description">Description *</label>
                             <textarea name="description" id="description" class="form-control" id="" cols="30"
                                 rows="5"></textarea>
                         </div>
@@ -70,4 +77,6 @@
 {{#> scripts}}
 
 {{/scripts}}
-<script src="js/main2.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
+<script defer src="js/main2.js"></script>

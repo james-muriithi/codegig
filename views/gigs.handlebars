@@ -27,9 +27,11 @@
                 <a href="#">
                   <h2 class="mr-3 text-black h4">{{title}}</h2>
                 </a>
-                <div class="badge-wrap">
-                  <span class="bg-primary text-white badge py-1 px-2">Partime</span>
-                </div>
+                {{#if category}}
+                  <div class="badge-wrap">
+                    <span class="bg-success text-white badge py-1 px-2">{{category}}</span>
+                  </div>
+                {{/if}}
               </div>
         
               <div class="job-post-item-body d-block d-md-flex pr-3 pr-md-0">
@@ -39,8 +41,8 @@
               </div>
         
               <div class="job-post-item-body d-block d-md-flex">
-                <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                <div class="mr-3"><span class="icon-money"></span> <span> {{budget}}</span></div>
+                <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{company}}</a></div>
+                <div class="mr-3"><span class="icon-money"></span> <span> {{budget}} Kes</span></div>
                 <div class="mr-3"><span class="icon-code"></span> <span> {{technologies}}</span></div>
               </div>
             </div>
