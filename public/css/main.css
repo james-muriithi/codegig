@@ -1,0 +1,70 @@
+.company-image {
+    width: 82px;
+    height: 82px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 15px;
+    /*background: #F5F7FA;*/
+    margin-right: 25px;
+    border: 1px solid #2e55fa;
+}
+
+.border-r-4 {
+    border-radius: 4px;
+}
+
+.job-post-item {
+    border-left: 5px solid #e1e7ff;
+}
+
+.job-post-item:hover {
+    border-color: #2e55fa;
+}
+
+#scrollUp {
+    position: fixed;
+    z-index: 2147483647;
+    right: 10px;
+    bottom: 10px;
+    background: #2e55fa;
+    height: 50px;
+    width: 50px;
+    right: 31px;
+    bottom: 18px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 48px;
+    border: 2px solid transparent;
+}
+
+.fs-26 {
+    font-size: 26px;
+}
+
+form {
+    -webkit-box-shadow: 0px 7px 15px -5px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0px 7px 15px -5px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 7px 15px -5px rgba(0, 0, 0, 0.07);
+}
+
+@media screen and (max-width: 576px) {
+    .mr-md-0 {
+        margin-right: 0px!important;
+    }
+    .pr-md-0 {
+        padding-right: 0px!important;
+    }
+    .px-md-2 {
+        padding-left: 2rem!important;
+        padding-right: 2rem!important;
+    }
+}
+
+@media (max-width: 767px) {
+    #scrollUp {
+        right: 16px;
+    }
+}
