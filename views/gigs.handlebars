@@ -1,23 +1,86 @@
-<section id="gigs" class="container">
-  <h1>
-    All Gigs
-  </h1>
-  {{#each gigs}}
-  <div class="gig">
-    <h3>{{title}}</h3>
-    <p>{{description}}</p>
-    <ul>
-      <li>Budget: {{budget}}</li>
-      <li><a href="mailto:{{contact_email}}" class="btn btn-reverse">Apply Now</a></li>
-    </ul>
-    <div class="tech">
-      <small>Technologies Needed: <span>{{technologies}}</span></small>
-    </div>
-  </div>
-  {{else}}
-  <p>
-    No gigs
-  </p>
-  {{/each}}
 
+{{#> gigs-nav}}
+
+{{/gigs-nav}}
+<!-- END nav -->
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row justify-content-center mb-3 pb-3">
+      <div class="col-md-7 heading-section text-center ftco-animate">
+        {{!-- <h2 class="mb-2"><span>All</span> Gigs</h2> --}}
+      </div>
+    </div>
+    <div class="row">
+      
+      {{#each gigs}}
+        <!--job post -->
+        <div class="col-md-12 ftco-animate mb-3">
+        
+          <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center border-r-4">
+        
+            <div class="mb-4 mr-5 company-image">
+              <img src="images/1.svg" alt="LOGO">
+            </div>
+        
+            <div class="mb-4 mb-md-0 mr-5 mr-md-0">
+              <div class="job-post-item-header d-flex align-items-center">
+                <a href="#">
+                  <h2 class="mr-3 text-black h4">{{title}}</h2>
+                </a>
+                <div class="badge-wrap">
+                  <span class="bg-primary text-white badge py-1 px-2">Partime</span>
+                </div>
+              </div>
+        
+              <div class="job-post-item-body d-block d-md-flex pr-3 pr-md-0">
+                <p>
+                  {{description}}
+                </p>
+              </div>
+        
+              <div class="job-post-item-body d-block d-md-flex">
+                <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
+                <div class="mr-3"><span class="icon-money"></span> <span> {{budget}}</span></div>
+                <div class="mr-3"><span class="icon-code"></span> <span> {{technologies}}</span></div>
+              </div>
+            </div>
+        
+            <div class="ml-auto d-flex">
+              <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+            </div>
+          </div>
+        </div><!-- end post-->
+      {{else}}
+      <p>
+        No gigs
+      </p>
+      {{/each}}
+
+
+    </div>
+    {{!-- <div class="row mt-5">
+      <div class="col text-center">
+        <div class="block-27">
+          <ul>
+            <li><a href="#">&lt;</a></li>
+            <li class="active"><span>1</span></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&gt;</a></li>
+          </ul>
+        </div>
+      </div>
+    </div> --}}
+  </div>
 </section>
+
+{{#> footer}}
+
+{{/footer}}
+
+{{#> scripts}}
+
+{{/scripts}}
+<script src="js/main2.js"></script>
