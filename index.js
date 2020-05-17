@@ -7,6 +7,14 @@ const app = express();
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars');
+// register a helper
+exphbs.create({}).handlebars.registerHelper('if_equal', function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this)
+    } else {
+        return opts.inverse(this)
+    }
+})
 
 // body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
