@@ -1,14 +1,19 @@
 {
     "name": "code-gig",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "",
     "engines": {
         "node": "10x"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/james-muriithi/codegig"
+    },
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "dev": "nodemon index.js"
+        "dev": "nodemon index.js",
+        "build": "npx gulp build"
     },
     "keywords": [],
     "author": "",
@@ -18,11 +23,28 @@
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "express-handlebars": "^4.0.4",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-connect": "^5.7.0",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-purgecss": "^2.2.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-uglify-es": "^2.0.0",
         "pg": "^8.2.0",
         "pg-hstore": "^2.3.3",
         "sequelize": "^5.21.9"
     },
     "devepDendencies": {
-        "nodemon": "^2.0.3"
+        "nodemon": "^2.0.3",
+        "gulp": "^4.0.2",
+        "gulp-clean-css": "^4.2.0",
+        "gulp-connect": "^5.7.0",
+        "gulp-ejs": "^5.0.0",
+        "gulp-htmlmin": "^5.0.1",
+        "gulp-imagemin": "^7.1.0",
+        "gulp-minify-ejs": "^1.0.3",
+        "gulp-purgecss": "^2.1.2",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-uglify-es": "^1.0.4"
     }
 }

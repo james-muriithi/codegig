@@ -22,12 +22,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 // static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'src')));
 
 
 // gig route
 const gigRoute = require('./routes/gig')
-app.use('/gigs', express.static(path.join(__dirname, 'public')), gigRoute);
+app.use('/gigs', express.static(path.join(__dirname, 'src')), gigRoute);
 
 // index route
 app.get('/', (req, res) => {
