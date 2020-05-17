@@ -42,7 +42,12 @@
         
               <div class="job-post-item-body d-block d-md-flex">
                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{company}}</a></div>
+                {{#if_equal budget "Unknown"}}
+                <div class="mr-3"><span class="icon-money"></span> <span> {{budget}}</span></div>
+                {{else}}
                 <div class="mr-3"><span class="icon-money"></span> <span> {{budget}} Kes</span></div>
+                {{/if_equal}}
+                
                 <div class="mr-3"><span class="icon-code"></span> <span> {{technologies}}</span></div>
               </div>
             </div>
