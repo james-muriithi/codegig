@@ -5,6 +5,12 @@ const path = require('path');
 
 const app = express();
 
+let STATIC_DIR = 'src';
+
+if (process.env.DATABASE_URL) {
+    STATIC_DIR = 'public'
+}
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars');
 // register a helper
@@ -22,12 +28,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 
 // static folder
-app.use(express.static(path.join(__dirname, 'src')));
+app.use(express.static(path.join(__dirname, STATIC_DIR)));
 
 
 // gig route
 const gigRoute = require('./routes/gig')
-app.use('/gigs', express.static(path.join(__dirname, 'src')), gigRoute);
+app.use('/gigs', express.static(path.join(__dirname, STATIC_DIR)), gigRoute);
 
 // index route
 app.get('/', (req, res) => {
@@ -41,6 +47,7 @@ app.get('/', (req, res) => {
             console.log(err);
         })
 });
+
 
 
 const PORT = process.env.PORT || 5050
