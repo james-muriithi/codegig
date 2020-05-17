@@ -3,7 +3,7 @@
     "version": "1.1.0",
     "description": "",
     "engines": {
-        "node": "10x"
+        "node": "10.x"
     },
     "repository": {
         "type": "git",
