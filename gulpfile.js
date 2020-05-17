@@ -14,6 +14,11 @@ const uglify = require('gulp-uglify-es').default;
 //         .pipe(gulp.dest('views/'))
 // }
 
+const copyFonts = function() {
+    return gulp.src('src/fonts/**')
+        .pipe(gulp.dest('public/fonts'));
+};
+
 const imagesGulp = function() {
     return gulp.src('src/images/**')
         .pipe(imagemin([
@@ -53,6 +58,6 @@ const jsGulp = function() {
 
 
 
-exports.build = gulp.parallel(purgeCss, imagesGulp, jsGulp);
+exports.build = gulp.parallel(purgeCss, imagesGulp, jsGulp, copyFonts);
 
 // exports.watch = gulp.parallel(server, watch);

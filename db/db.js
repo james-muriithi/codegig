@@ -4,9 +4,14 @@ if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 let db;
 
 if (process.env.DATABASE_URL) {
-    db = new Sequelize({
-        url: process.env.DATABASE_URL,
-        dialect: 'postgres'
+    console.log('prod');
+    db = new Sequelize(process.env.DATABASE_URL, {
+        pool: {
+            max: 5,
+            min: 0,
+            acquire: 30000,
+            idle: 10000
+        }
     })
 } else {
     db = new Sequelize({
