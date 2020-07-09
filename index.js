@@ -22,6 +22,21 @@ exphbs.create({}).handlebars.registerHelper('if_equal', function(a, b, opts) {
     }
 })
 
+const https_redirect = function(req, res, next) {
+    if (process.env.NODE_ENV === 'production') {
+        if (req.headers['x-forwarded-proto'] != 'https') {
+            return res.redirect('https://' + req.headers.host + req.url);
+        } else {
+            return next();
+        }
+    } else {
+        return next();
+    }
+};
+
+// force https
+app.use(https_redirect);
+
 // body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
