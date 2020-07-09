@@ -255,14 +255,15 @@
                                 </small>`)
                      });
                  } else if (response.success) {
-                     $('#add-job').reset()
+                     $('#add-job')[0].reset()
                      toastr.success(response.success, 'Hurray🥂!', {
                          showMethod: "slideDown",
                          hideMethod: "fadeOut",
                          positionClass: 'toast-bottom-right'
                      })
-                 } else {
-                     toastr.error("An unexpected error occurred.", 'Oops!', {
+                 } else if (response.error) {
+                     $('#add-job')[0].reset()
+                     toastr.error(response.error, 'Oops!', {
                          showMethod: "slideDown",
                          hideMethod: "fadeOut",
                          positionClass: 'toast-bottom-right'

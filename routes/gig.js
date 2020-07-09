@@ -95,19 +95,31 @@ router.post('/add', (req, res) => {
 
         technologies = technologies.toLowerCase().replace('/, /g', ',')
 
-        Gig.create({
-                title,
-                technologies,
-                budget,
-                description,
-                contact_email,
-                company,
-                category
-            })
-            .then(gig => {
-                res.json({ success: "Your job post was successfully saved." });
-            })
-            .catch(err => console.log(err))
+        Gig.count({
+            where: {
+                title: {
+                    [Op.iLike]: `%${title}%`
+                }
+            }
+        }).then(count => {
+            if (count == 0) {
+                Gig.create({
+                        title,
+                        technologies,
+                        budget,
+                        description,
+                        contact_email,
+                        company,
+                        category
+                    })
+                    .then(gig => {
+                        res.json({ success: "Your job post was successfully saved." });
+                    })
+                    .catch(err => console.log(err))
+            } else {
+                res.json({ error: "That job title already exists." });
+            }
+        });
     }
 
 });

@@ -39,7 +39,8 @@ const imagesGulp = function() {
 const purgeCss = function() {
     return gulp.src('src/css/*.css')
         .pipe(purgecss({
-            content: ['views/**/*.handlebars']
+            content: ['views/**/*.handlebars'],
+            whitelist: ['text-danger']
         }))
         .pipe(sourcemaps.init())
         .pipe(css())
