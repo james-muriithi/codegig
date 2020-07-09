@@ -40,7 +40,7 @@ const purgeCss = function() {
     return gulp.src('src/css/*.css')
         .pipe(purgecss({
             content: ['views/**/*.handlebars'],
-            whitelist: ['text-danger']
+            whitelist: ['text-danger', 'scrollUp', 'd-none']
         }))
         .pipe(sourcemaps.init())
         .pipe(css())
