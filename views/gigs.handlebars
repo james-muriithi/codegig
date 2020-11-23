@@ -25,35 +25,32 @@
             <div class="mb-4 mb-md-0 mr-5 mr-md-0">
               <div class="job-post-item-header d-flex align-items-center">
                 <a href="#">
-                  <h2 class="mr-3 text-black h4">{{title}}</h2>
+                  <h2 class="mr-3 text-black h4">{{job_title}}</h2>
                 </a>
                 {{#if category}}
                   <div class="badge-wrap">
-                    <span class="bg-success text-white badge py-1 px-2">{{category}}</span>
+                    {{!-- <span class="bg-success text-white badge py-1 px-2">{{category}}</span> --}}
                   </div>
                 {{/if}}
               </div>
         
               <div class="job-post-item-body d-block d-md-flex pr-3 pr-md-0">
                 <p>
-                  {{description}}
+                  {{summary}}
                 </p>
               </div>
         
               <div class="job-post-item-body d-block d-md-flex">
                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{company}}</a></div>
-                {{#if_equal budget "Unknown"}}
-                <div class="mr-3"><span class="icon-money"></span> <span> {{budget}}</span></div>
-                {{else}}
-                <div class="mr-3"><span class="icon-money"></span> <span> {{budget}} Kes</span></div>
-                {{/if_equal}}
                 
-                <div class="mr-3"><span class="icon-code"></span> <span> {{technologies}}</span></div>
+                <div class="mr-3"><span class="icon-money"></span> <span> {{salary}}</span></div>
+                
+                <div class="mr-3"><span class="icon-clock-o"></span> <span> {{post_date}}</span></div>
               </div>
             </div>
         
             <div class="ml-auto d-flex">
-              <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+              <a href="{{link}}" rel="noopener" target="_blank" class="btn btn-primary py-2 mr-1">Apply Job</a>
             </div>
           </div>
         </div><!-- end post-->
@@ -65,21 +62,21 @@
 
 
     </div>
-    {{!-- <div class="row mt-5">
+    <div class="row mt-5">
       <div class="col text-center">
         <div class="block-27">
           <ul>
             <li><a href="#">&lt;</a></li>
             <li class="active"><span>1</span></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
+            <li><a href="?page=2">2</a></li>
+            <li><a href="?page=3">3</a></li>
             <li><a href="#">4</a></li>
             <li><a href="#">5</a></li>
             <li><a href="#">&gt;</a></li>
           </ul>
         </div>
       </div>
-    </div> --}}
+    </div>
   </div>
 </section>
 

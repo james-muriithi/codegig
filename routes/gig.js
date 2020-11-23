@@ -1,23 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const Gig = require('../models/Gig');
+const Gig = require('../helpers/Gig');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+const fetchGigs = require('../helpers/Gig');
 
 // get the gigs
 router.get('/', (req, res) => {
-    Gig.findAll({
-            raw: true,
-            order: [
-                ['createdAt', 'DESC']
-            ],
-        })
-        .then(gigs => {
-            res.render('gigs', { gigs });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+    let page = req.query.page ? req.query.page: 1;
+    let limit = req.query.limit ? req.query.limit: 10;
+    fetchGigs(limit, page).then(gigs => {
+        res.render('gigs', { gigs });
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 });
 
 router.get('/add', (req, res) => {

@@ -185,28 +185,28 @@
                     <div class="mb-4 mb-md-0 mr-5 mr-md-0">
                         <div class="job-post-item-header d-flex align-items-center">
                             <a href="#">
-                                <h2 class="mr-3 text-black h4">{{title}}</h2>
+                                <h2 class="mr-3 text-black h5">{{job_title}}</h2>
                             </a>
                             <div class="badge-wrap">
-                                <span class="bg-primary text-white badge py-1 px-2">Partime</span>
+                                {{!-- <span class="bg-primary text-white badge py-1 px-2">Partime</span> --}}
                             </div>
                         </div>
 
                         <div class="job-post-item-body d-block d-md-flex pr-3 pr-md-0">
                             <p>
-                                {{description}}
+                                {{summary}}
                             </p>
                         </div>
 
                         <div class="job-post-item-body d-block d-md-flex">
-                            <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                            <div class="mr-3"><span class="icon-money"></span> <span> {{budget}}</span></div>
-                            <div class="mr-3"><span class="icon-code"></span> <span> {{technologies}}</span></div>
+                            <div class="mr-3"><span class="icon-layers"></span> <a href="#">{{company}}</a></div>
+                            <div class="mr-3"><span class="icon-money"></span> <span> {{salary}}</span></div>
+                            <div class="mr-3"><span class="icon-clock-o"></span> <span> {{post_date}}</span></div>
                         </div>
                     </div>
 
                     <div class="ml-auto d-flex">
-                        <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+                        <a href="{{link}}" rel="noopener" target="_blank" class="btn btn-primary py-2 mr-1">Apply Job</a>
                     </div>
                 </div>
             </div><!-- end post-->

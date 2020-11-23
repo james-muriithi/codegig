@@ -13,6 +13,7 @@ if (process.env.DATABASE_URL) {
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars');
+
 // register a helper
 exphbs.create({}).handlebars.registerHelper('if_equal', function(a, b, opts) {
     if (a == b) {
@@ -52,15 +53,15 @@ app.use('/gigs', express.static(path.join(__dirname, STATIC_DIR)), gigRoute);
 
 // index route
 app.get('/', (req, res) => {
-    const Gig = require('./models/Gig');
+    const fetchGigs = require('./helpers/Gig');
 
-    Gig.findAll({ raw: true, limit: 3 })
-        .then(gigs => {
-            res.render('index', { gigs });
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+    fetchGigs(3).then(gigs => {
+        console.log(gigs);
+        res.render('index', { gigs });
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 });
 
 
